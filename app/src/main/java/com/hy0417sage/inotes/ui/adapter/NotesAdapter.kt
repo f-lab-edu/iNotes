@@ -1,10 +1,10 @@
-package com.hy0417sage.inotes
+package com.hy0417sage.inotes.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hy0417sage.inotes.databinding.LayoutANoteBinding
-import com.hy0417sage.inotes.room.ANoteEntity
+import com.hy0417sage.inotes.repository.data.ANoteEntity
 
 class NotesAdapter :
     RecyclerView.Adapter<NotesAdapter.ViewHolder>(){

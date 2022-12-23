@@ -1,4 +1,8 @@
-package com.hy0417sage.inotes.room
+package com.hy0417sage.inotes.repository.impl
+
+import com.hy0417sage.inotes.repository.NotesRepository
+import com.hy0417sage.inotes.repository.database.ANoteDao
+import com.hy0417sage.inotes.repository.data.ANoteEntity
 
 class NotesRepositoryImpl(private val aNoteDao: ANoteDao) : NotesRepository {
 

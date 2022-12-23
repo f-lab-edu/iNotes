@@ -5,11 +5,11 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.hy0417sage.inotes.room.ANoteEntity
-import com.hy0417sage.inotes.room.NotesDataBase
-import com.hy0417sage.inotes.room.NotesRepositoryImpl
-import com.hy0417sage.inotes.room.NotesViewModel
-import com.hy0417sage.inotes.fragment.EditANoteFragment
+import com.hy0417sage.inotes.repository.data.ANoteEntity
+import com.hy0417sage.inotes.repository.database.NotesDataBase
+import com.hy0417sage.inotes.repository.impl.NotesRepositoryImpl
+import com.hy0417sage.inotes.viewmodel.NotesViewModel
+import com.hy0417sage.inotes.ui.EditANoteFragment
 
 class ANoteActivity : AppCompatActivity() {
 

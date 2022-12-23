@@ -1,4 +1,4 @@
-package com.hy0417sage.inotes.room
+package com.hy0417sage.inotes.repository.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

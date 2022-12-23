@@ -11,9 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hy0417sage.inotes.databinding.ActivityMainBinding
-import com.hy0417sage.inotes.room.NotesDataBase
-import com.hy0417sage.inotes.room.NotesRepositoryImpl
-import com.hy0417sage.inotes.room.NotesViewModel
+import com.hy0417sage.inotes.repository.database.NotesDataBase
+import com.hy0417sage.inotes.repository.impl.NotesRepositoryImpl
+import com.hy0417sage.inotes.ui.adapter.NotesAdapter
+import com.hy0417sage.inotes.viewmodel.NotesViewModel
 
 class MainActivity : AppCompatActivity() {
 

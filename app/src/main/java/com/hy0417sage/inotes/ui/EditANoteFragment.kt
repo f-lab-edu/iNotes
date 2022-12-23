@@ -1,4 +1,4 @@
-package com.hy0417sage.inotes.fragment
+package com.hy0417sage.inotes.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.hy0417sage.inotes.ANoteActivity
 import com.hy0417sage.inotes.databinding.FragmentEditANoteBinding
-import com.hy0417sage.inotes.room.ANoteEntity
+import com.hy0417sage.inotes.repository.data.ANoteEntity
 
 class EditANoteFragment : Fragment() {
 

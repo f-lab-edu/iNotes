@@ -1,7 +1,9 @@
-package com.hy0417sage.inotes.room
+package com.hy0417sage.inotes.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.hy0417sage.inotes.repository.impl.NotesRepositoryImpl
+import com.hy0417sage.inotes.repository.data.ANoteEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
