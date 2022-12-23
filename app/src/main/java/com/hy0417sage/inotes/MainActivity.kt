@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hy0417sage.inotes.databinding.ActivityMainBinding
+import com.hy0417sage.inotes.room.NotesDataBase
+import com.hy0417sage.inotes.room.NotesRepositoryImpl
 import com.hy0417sage.inotes.room.NotesViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +23,8 @@ class MainActivity : AppCompatActivity() {
     private val notesViewModel by viewModels<NotesViewModel> {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return NotesViewModel(application) as T
+                val aNoteDao = NotesDataBase.getInstance(application).getANoteDao()
+                return NotesViewModel(NotesRepositoryImpl(aNoteDao)) as T
             }
         }
     }
@@ -41,8 +44,8 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = notesAdapter
         binding.recyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
 
-        notesViewModel.getNotesData().observe(this, Observer { loadNotes ->
-            notesAdapter.updateNotes(loadNotes)
+        notesViewModel.getWholeNotes().observe(this, Observer { wholeNotes ->
+            notesAdapter.updateNotes(wholeNotes)
         })
     }
 }

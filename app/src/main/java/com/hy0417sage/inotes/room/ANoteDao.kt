@@ -10,7 +10,7 @@ import androidx.room.Query
 interface ANoteDao {
 
     @Query("SELECT * FROM ANoteEntity")
-    fun getAllNotes(): LiveData<List<ANoteEntity>>
+    fun getWholeNotes(): LiveData<List<ANoteEntity>>
 
     @Insert
     suspend fun insertANote(aNote: ANoteEntity)
