@@ -11,8 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.INotes">
         <activity
-            android:name=".ANoteActivity"
-            android:exported="false" />
+            android:name=".ANoteActivity"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
