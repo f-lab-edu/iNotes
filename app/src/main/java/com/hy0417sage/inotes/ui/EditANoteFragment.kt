@@ -26,6 +26,12 @@ class EditANoteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentEditANoteBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         binding.button.setOnClickListener {
             aNoteActivity.insertANote(
                 ANoteEntity(
@@ -36,11 +42,6 @@ class EditANoteFragment : Fragment() {
             )
             aNoteActivity.onBackPressed()
         }
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
     }
 
