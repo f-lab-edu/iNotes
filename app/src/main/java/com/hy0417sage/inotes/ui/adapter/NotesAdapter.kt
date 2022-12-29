@@ -13,7 +13,7 @@ class NotesAdapter :
     private var itemClickListener: OnItemClickListener? = null
 
     class ViewHolder(binding: LayoutANoteBinding) : RecyclerView.ViewHolder(binding.root) {
-        val mainText = binding.mainText
+        val title = binding.titleText
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -24,8 +24,13 @@ class NotesAdapter :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val notesList = notesList?.get(position)
-        holder.mainText.text = notesList?.mainText
+        val notesList = notesList.get(position)
+
+        if (notesList.title!!.isEmpty()){
+            holder.title.text = notesList.mainText
+        }else{
+            holder.title.text = notesList.title
+        }
 
         holder.itemView.setOnClickListener {
             itemClickListener?.onClick(position)

@@ -1,10 +1,10 @@
 package com.hy0417sage.inotes
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.OnBackPressedDispatcher
 import androidx.activity.viewModels
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.hy0417sage.inotes.repository.data.ANoteEntity
@@ -13,6 +13,7 @@ import com.hy0417sage.inotes.repository.impl.NotesRepositoryImpl
 import com.hy0417sage.inotes.ui.EditANoteFragment
 import com.hy0417sage.inotes.ui.ViewANoteFragment
 import com.hy0417sage.inotes.viewmodel.NotesViewModel
+
 
 class ANoteActivity : AppCompatActivity() {
 
@@ -40,6 +41,11 @@ class ANoteActivity : AppCompatActivity() {
         fragmentViewChange(signal = noteId)
     }
 
+    fun changeNote(noteTitle: String, noteMainText: String) {
+        this.noteTitle = noteTitle
+        this.noteMainText = noteMainText
+    }
+
     fun fragmentViewChange(signal: Int) {
         when (signal) {
             -1, EDIT_SIGNAL -> supportFragmentManager.beginTransaction()
@@ -55,12 +61,12 @@ class ANoteActivity : AppCompatActivity() {
         notesViewModel.insertANote(aNoteEntity)
     }
 
-    fun updateANote(aNoteEntity: ANoteEntity) {
-        notesViewModel.updateANote(aNoteEntity)
+    fun deleteANote(aNoteEntity: ANoteEntity) {
+        notesViewModel.deleteANote(aNoteEntity)
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
+    fun updateANote(aNoteEntity: ANoteEntity) {
+        notesViewModel.updateANote(aNoteEntity)
     }
 
     companion object {

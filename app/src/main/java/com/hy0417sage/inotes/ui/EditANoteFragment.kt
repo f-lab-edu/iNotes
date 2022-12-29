@@ -6,14 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.hy0417sage.inotes.ANoteActivity
 import com.hy0417sage.inotes.databinding.FragmentEditANoteBinding
 import com.hy0417sage.inotes.repository.data.ANoteEntity
 
 class EditANoteFragment : Fragment() {
 
-    lateinit var aNoteActivity: ANoteActivity
-    lateinit var binding: FragmentEditANoteBinding
+    private lateinit var aNoteActivity: ANoteActivity
+    private lateinit var binding: FragmentEditANoteBinding
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -35,43 +36,48 @@ class EditANoteFragment : Fragment() {
 
     private fun checkNoteExists(id: Int) {
         when (id) {
-            -1 -> insertANote(
-                aNoteEntity = ANoteEntity(
-                    null,
-                    binding.mainTextEdit.text.toString(),
-                    binding.mainTextEdit.text.toString()
-                )
-            )
+            -1 -> insertANote()
             else -> {
+                binding.titleEdit.setText(aNoteActivity.noteTitle.toString())
                 binding.mainTextEdit.setText(aNoteActivity.noteMainText.toString())
-                insertANote(
-                    id = aNoteActivity.noteId, aNoteEntity = ANoteEntity(
-                        aNoteActivity.noteId,
-                        binding.mainTextEdit.text.toString(),
-                        binding.mainTextEdit.text.toString()
-                    )
-                )
+                insertANote(id = aNoteActivity.noteId)
             }
         }
     }
 
-    private fun insertANote(id: Int? = null, aNoteEntity: ANoteEntity) {
-        binding.button.setOnClickListener {
-            when (id) {
-                null -> {
-                    aNoteActivity.insertANote(
-                        aNoteEntity
-                    )
+    private fun insertANote(id: Int? = null) {
+        binding.insertNote.setOnClickListener {
+            val title = binding.titleEdit.text.toString()
+            val mainText = binding.mainTextEdit.text.toString()
+            if (title.isNotEmpty() || mainText.isNotEmpty()) {
+                when (id) {
+                    null -> {
+                        aNoteActivity.insertANote(
+                            aNoteEntity(id, title, mainText)
+                        )
+                        aNoteActivity.onBackPressedDispatcher.onBackPressed()
+                    }
+                    else -> {
+                        aNoteActivity.updateANote(
+                            aNoteEntity(id, title, mainText)
+                        )
+                        aNoteActivity.changeNote(title, mainText)
+                        aNoteActivity.fragmentViewChange(id)
+                    }
                 }
-                else -> {
-                    aNoteActivity.updateANote(
-                        aNoteEntity
-                    )
-                }
-
+            }else{
+                val toast = Toast.makeText(aNoteActivity,"note is empty\n can't save (｡•́︿•̀｡)", Toast.LENGTH_SHORT)
+                toast.show()
             }
-            aNoteActivity.onBackPressed()
         }
+    }
+
+    fun aNoteEntity(id: Int?, title: String, mainText: String): ANoteEntity {
+        return ANoteEntity(
+            id,
+            title,
+            mainText
+        )
     }
 
     companion object {

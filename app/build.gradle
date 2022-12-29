@@ -5,12 +5,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.hy0417sage.inotes"
         minSdk 22
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -64,5 +64,8 @@ dependencies {
     //Mockito
     testImplementation "io.mockk:mockk:2.21.0"
     androidTestImplementation "io.mockk:mockk-android:2.21.0"
+
+    //onBackPressedDispatcher https://oguzhanaslann.medium.com/onbackpressed-deprecated-so-what-to-use-92ddd55fc21d
+    implementation "androidx.activity:activity:1.7.0-alpha02"
 
 }

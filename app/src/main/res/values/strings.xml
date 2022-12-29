@@ -10,4 +10,8 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="create">create</string>
+    <string name="delete">delete</string>
+    <string name="title_hint">제목</string>
+    <string name="main_text_hint">본문</string>
+    <string name="insert_note">insert note</string>
 </resources>

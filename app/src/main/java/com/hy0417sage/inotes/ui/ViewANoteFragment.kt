@@ -15,7 +15,7 @@ import com.hy0417sage.inotes.viewmodel.NotesViewModel
 
 class ViewANoteFragment : Fragment() {
 
-    lateinit var aNoteActivity: ANoteActivity
+    private lateinit var aNoteActivity: ANoteActivity
     private lateinit var binding: FragmentViewANoteBinding
 
     override fun onAttach(context: Context) {
@@ -37,6 +37,21 @@ class ViewANoteFragment : Fragment() {
         binding.aNoteMainText.text = aNoteActivity.noteMainText.toString()
         binding.viewANote.setOnClickListener {
             aNoteActivity.fragmentViewChange(Companion.EDIT_SIGNAL)
+        }
+
+        canDeleteANote()
+    }
+
+    private fun canDeleteANote() {
+        binding.deleteButton.setOnClickListener {
+            aNoteActivity.deleteANote(
+                ANoteEntity(
+                    id = aNoteActivity.noteId,
+                    title = aNoteActivity.noteTitle,
+                    mainText = aNoteActivity.noteMainText
+                )
+            )
+            aNoteActivity.onBackPressedDispatcher.onBackPressed()
         }
     }
 
