@@ -15,10 +15,6 @@ class EditANoteFragment : Fragment() {
     lateinit var aNoteActivity: ANoteActivity
     lateinit var binding: FragmentEditANoteBinding
 
-    companion object {
-        fun newInstance() = EditANoteFragment()
-    }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is ANoteActivity) aNoteActivity = context
@@ -46,5 +42,9 @@ class EditANoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+    }
+
+    companion object {
+        fun newInstance() = EditANoteFragment()
     }
 }

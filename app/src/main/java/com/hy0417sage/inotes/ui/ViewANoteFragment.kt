@@ -10,10 +10,6 @@ import com.hy0417sage.inotes.viewmodel.NotesViewModel
 
 class ViewANoteFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = ViewANoteFragment()
-    }
-
     private lateinit var viewModel: NotesViewModel
 
     override fun onCreateView(
@@ -27,6 +23,10 @@ class ViewANoteFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 //        viewModel = ViewModelProvider(this).get(NotesViewModel::class.java)
 //        // TODO: Use the ViewModel
+    }
+
+    companion object {
+        fun newInstance() = ViewANoteFragment()
     }
 
 }
