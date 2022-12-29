@@ -6,5 +6,5 @@ import com.hy0417sage.inotes.repository.data.ANoteEntity
 interface NotesRepository {
     suspend fun insertANote(aNoteEntity: ANoteEntity)
     suspend fun deleteANote(aNoteEntity: ANoteEntity)
-    fun getWholeNotes(): LiveData<List<ANoteEntity>>
+    fun wholeNotes(): LiveData<List<ANoteEntity>>
 }

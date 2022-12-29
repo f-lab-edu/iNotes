@@ -31,7 +31,9 @@ class ANoteActivity : AppCompatActivity() {
         }
     }
 
-    fun insertANote(aNoteEntity: ANoteEntity) = notesViewModel.insertANote(aNoteEntity)
+    fun insertANote(aNoteEntity: ANoteEntity) {
+        notesViewModel.insertANote(aNoteEntity)
+    }
 
     override fun onBackPressed() {
         super.onBackPressed()

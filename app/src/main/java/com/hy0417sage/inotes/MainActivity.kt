@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = notesAdapter
         binding.recyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
 
-        notesViewModel.getWholeNotes().observe(this, Observer { wholeNotes ->
+        notesViewModel.wholeNotes().observe(this, Observer { wholeNotes ->
             notesAdapter.updateNotes(wholeNotes)
         })
     }

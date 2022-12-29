@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 
 class NotesViewModel(private val notesRepository : NotesRepositoryImpl) : ViewModel() {
 
-    fun getWholeNotes() = notesRepository.getWholeNotes()
+    fun wholeNotes() = notesRepository.wholeNotes()
 
     fun insertANote(aNoteEntity: ANoteEntity){
         viewModelScope.launch(Dispatchers.IO) {

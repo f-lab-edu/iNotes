@@ -11,7 +11,7 @@ import com.hy0417sage.inotes.repository.data.ANoteEntity
 interface ANoteDao {
 
     @Query("SELECT * FROM ANoteEntity")
-    fun getWholeNotes(): LiveData<List<ANoteEntity>>
+    fun wholeNotes(): LiveData<List<ANoteEntity>>
 
     @Insert
     suspend fun insertANote(aNote: ANoteEntity)

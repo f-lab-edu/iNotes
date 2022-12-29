@@ -6,7 +6,7 @@ import com.hy0417sage.inotes.repository.data.ANoteEntity
 
 class NotesRepositoryImpl(private val aNoteDao: ANoteDao) : NotesRepository {
 
-    override fun getWholeNotes() = aNoteDao.getWholeNotes()
+    override fun wholeNotes() = aNoteDao.wholeNotes()
 
     override suspend fun insertANote(aNoteEntity: ANoteEntity){
         aNoteDao.insertANote(aNoteEntity)
