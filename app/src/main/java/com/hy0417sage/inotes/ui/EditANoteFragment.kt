@@ -20,7 +20,6 @@ class EditANoteFragment : Fragment() {
         if (context is ANoteActivity) aNoteActivity = context
     }
 
-    //바인딩을 사용했을때 맵핑하는 방법이다.
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

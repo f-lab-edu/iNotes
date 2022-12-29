@@ -10,6 +10,7 @@ class NotesAdapter :
     RecyclerView.Adapter<NotesAdapter.ViewHolder>(){
 
     private var notesList: List<ANoteEntity> = ArrayList()
+    private var itemClickListener: OnItemClickListener? = null
 
     class ViewHolder(binding: LayoutANoteBinding) : RecyclerView.ViewHolder(binding.root) {
         val mainText = binding.mainText
@@ -25,6 +26,10 @@ class NotesAdapter :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val notesList = notesList?.get(position)
         holder.mainText.text = notesList?.mainText
+
+        holder.itemView.setOnClickListener{
+            itemClickListener?.onClick(position)
+        }
     }
 
     override fun getItemCount() = notesList.size
@@ -33,4 +38,14 @@ class NotesAdapter :
         this.notesList = notesList
         notifyDataSetChanged()
     }
+
+    fun interface OnItemClickListener {
+        fun onClick(position: Int)
+    }
+
+    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.itemClickListener = onItemClickListener
+    }
+
+    fun aNotePosition(position: Int) = notesList[position]
 }

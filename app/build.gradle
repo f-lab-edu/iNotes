@@ -27,6 +27,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -57,4 +60,9 @@ dependencies {
 
     //ktx
     implementation("androidx.fragment:fragment-ktx:1.5.5")
+
+    //Mockito
+    testImplementation "io.mockk:mockk:2.21.0"
+    androidTestImplementation "io.mockk:mockk-android:2.21.0"
+
 }
