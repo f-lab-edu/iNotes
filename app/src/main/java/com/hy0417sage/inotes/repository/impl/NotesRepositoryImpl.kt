@@ -15,4 +15,8 @@ class NotesRepositoryImpl(private val aNoteDao: ANoteDao) : NotesRepository {
     override suspend fun deleteANote(aNoteEntity: ANoteEntity){
         aNoteDao.deleteANote(aNoteEntity)
     }
+
+    override suspend fun updateANote(aNoteEntity: ANoteEntity) {
+        aNoteDao.updateANote(aNoteEntity)
+    }
 }

@@ -22,4 +22,10 @@ class NotesViewModel(private val notesRepository : NotesRepository) : ViewModel(
             notesRepository.deleteANote(aNoteEntity)
         }
     }
+
+    fun updateANote(aNoteEntity: ANoteEntity){
+        viewModelScope.launch(Dispatchers.IO){
+            notesRepository.updateANote(aNoteEntity)
+        }
+    }
 }

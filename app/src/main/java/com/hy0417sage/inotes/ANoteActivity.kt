@@ -18,6 +18,7 @@ class ANoteActivity : AppCompatActivity() {
 
     var noteTitle: String? = null
     var noteMainText: String? = null
+    var noteId: Int = -1
 
     private val notesViewModel by viewModels<NotesViewModel> {
         object : ViewModelProvider.Factory {
@@ -31,7 +32,7 @@ class ANoteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_a_note)
 
-        val noteId = intent.getIntExtra("id", -1)
+        noteId = intent.getIntExtra("id", -1)
         noteTitle = intent.getStringExtra("title")
         noteMainText = intent.getStringExtra("mainText")
 
@@ -51,6 +52,10 @@ class ANoteActivity : AppCompatActivity() {
 
     fun insertANote(aNoteEntity: ANoteEntity) {
         notesViewModel.insertANote(aNoteEntity)
+    }
+
+    fun updateANote(aNoteEntity: ANoteEntity){
+        notesViewModel.updateANote(aNoteEntity)
     }
 
     override fun onBackPressed() {

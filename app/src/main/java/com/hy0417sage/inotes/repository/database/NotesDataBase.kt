@@ -10,8 +10,8 @@ import com.hy0417sage.inotes.repository.data.ANoteEntity
 abstract class NotesDataBase : RoomDatabase() {
 
     abstract fun getANoteDao(): ANoteDao
-    companion object{
 
+    companion object{
         @Volatile
         private var INSTANCE: NotesDataBase? = null
 

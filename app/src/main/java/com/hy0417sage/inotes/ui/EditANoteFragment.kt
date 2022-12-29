@@ -31,17 +31,45 @@ class EditANoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        checkNoteExists(aNoteActivity.noteId)
+
+    }
+
+    private fun checkNoteExists(id: Int){
+        when (id){
+            -1 -> insertANote()
+            else -> {
+                binding.mainTextEdit.setText(aNoteActivity.noteMainText.toString())
+                insertANote(id = aNoteActivity.noteId)
+            }
+        }
+    }
+
+    private fun insertANote(id: Int? = null) {
         binding.button.setOnClickListener {
-            aNoteActivity.insertANote(
-                ANoteEntity(
-                    null,
-                    null,
-                    binding.textView.text.toString()
-                )
-            )
+            when (id) {
+                null -> {
+                    aNoteActivity.insertANote(
+                        ANoteEntity(
+                            id,
+                            binding.mainTextEdit.text.toString(),
+                            binding.mainTextEdit.text.toString()
+                        )
+                    )
+                }
+                else -> {
+                    aNoteActivity.updateANote(
+                        ANoteEntity(
+                            id,
+                            binding.mainTextEdit.text.toString(),
+                            binding.mainTextEdit.text.toString()
+                        )
+                    )
+                }
+
+            }
             aNoteActivity.onBackPressed()
         }
-
     }
 
     companion object {
