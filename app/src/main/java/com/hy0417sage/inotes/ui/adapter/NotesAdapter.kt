@@ -7,7 +7,7 @@ import com.hy0417sage.inotes.databinding.LayoutANoteBinding
 import com.hy0417sage.inotes.repository.data.ANoteEntity
 
 class NotesAdapter :
-    RecyclerView.Adapter<NotesAdapter.ViewHolder>(){
+    RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
 
     private var notesList: List<ANoteEntity> = ArrayList()
     private var itemClickListener: OnItemClickListener? = null
@@ -27,7 +27,7 @@ class NotesAdapter :
         val notesList = notesList?.get(position)
         holder.mainText.text = notesList?.mainText
 
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             itemClickListener?.onClick(position)
         }
     }

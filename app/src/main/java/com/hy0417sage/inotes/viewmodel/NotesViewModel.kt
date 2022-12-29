@@ -7,24 +7,24 @@ import com.hy0417sage.inotes.repository.data.ANoteEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class NotesViewModel(private val notesRepository : NotesRepository) : ViewModel() {
+class NotesViewModel(private val notesRepository: NotesRepository) : ViewModel() {
 
     fun wholeNotes() = notesRepository.wholeNotes()
 
-    fun insertANote(aNoteEntity: ANoteEntity){
+    fun insertANote(aNoteEntity: ANoteEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             notesRepository.insertANote(aNoteEntity)
         }
     }
 
-    fun deleteANote(aNoteEntity: ANoteEntity){
+    fun deleteANote(aNoteEntity: ANoteEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             notesRepository.deleteANote(aNoteEntity)
         }
     }
 
-    fun updateANote(aNoteEntity: ANoteEntity){
-        viewModelScope.launch(Dispatchers.IO){
+    fun updateANote(aNoteEntity: ANoteEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
             notesRepository.updateANote(aNoteEntity)
         }
     }

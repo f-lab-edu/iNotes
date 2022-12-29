@@ -30,40 +30,42 @@ class EditANoteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         checkNoteExists(aNoteActivity.noteId)
-
     }
 
-    private fun checkNoteExists(id: Int){
-        when (id){
-            -1 -> insertANote()
+    private fun checkNoteExists(id: Int) {
+        when (id) {
+            -1 -> insertANote(
+                aNoteEntity = ANoteEntity(
+                    null,
+                    binding.mainTextEdit.text.toString(),
+                    binding.mainTextEdit.text.toString()
+                )
+            )
             else -> {
                 binding.mainTextEdit.setText(aNoteActivity.noteMainText.toString())
-                insertANote(id = aNoteActivity.noteId)
+                insertANote(
+                    id = aNoteActivity.noteId, aNoteEntity = ANoteEntity(
+                        aNoteActivity.noteId,
+                        binding.mainTextEdit.text.toString(),
+                        binding.mainTextEdit.text.toString()
+                    )
+                )
             }
         }
     }
 
-    private fun insertANote(id: Int? = null) {
+    private fun insertANote(id: Int? = null, aNoteEntity: ANoteEntity) {
         binding.button.setOnClickListener {
             when (id) {
                 null -> {
                     aNoteActivity.insertANote(
-                        ANoteEntity(
-                            id,
-                            binding.mainTextEdit.text.toString(),
-                            binding.mainTextEdit.text.toString()
-                        )
+                        aNoteEntity
                     )
                 }
                 else -> {
                     aNoteActivity.updateANote(
-                        ANoteEntity(
-                            id,
-                            binding.mainTextEdit.text.toString(),
-                            binding.mainTextEdit.text.toString()
-                        )
+                        aNoteEntity
                     )
                 }
 

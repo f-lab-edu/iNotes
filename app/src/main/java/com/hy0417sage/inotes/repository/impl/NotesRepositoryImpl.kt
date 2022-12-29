@@ -8,11 +8,11 @@ class NotesRepositoryImpl(private val aNoteDao: ANoteDao) : NotesRepository {
 
     override fun wholeNotes() = aNoteDao.wholeNotes()
 
-    override suspend fun insertANote(aNoteEntity: ANoteEntity){
+    override suspend fun insertANote(aNoteEntity: ANoteEntity) {
         aNoteDao.insertANote(aNoteEntity)
     }
 
-    override suspend fun deleteANote(aNoteEntity: ANoteEntity){
+    override suspend fun deleteANote(aNoteEntity: ANoteEntity) {
         aNoteDao.deleteANote(aNoteEntity)
     }
 

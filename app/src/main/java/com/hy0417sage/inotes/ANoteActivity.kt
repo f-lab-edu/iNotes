@@ -28,6 +28,7 @@ class ANoteActivity : AppCompatActivity() {
             }
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_a_note)
@@ -36,11 +37,11 @@ class ANoteActivity : AppCompatActivity() {
         noteTitle = intent.getStringExtra("title")
         noteMainText = intent.getStringExtra("mainText")
 
-        fragmentViewChange(noteId)
+        fragmentViewChange(signal = noteId)
     }
 
-    fun fragmentViewChange(signal: Int){
-        when(signal){
+    fun fragmentViewChange(signal: Int) {
+        when (signal) {
             -1, EDIT_SIGNAL -> supportFragmentManager.beginTransaction()
                 .replace(R.id.container, EditANoteFragment.newInstance())
                 .commit()
@@ -54,7 +55,7 @@ class ANoteActivity : AppCompatActivity() {
         notesViewModel.insertANote(aNoteEntity)
     }
 
-    fun updateANote(aNoteEntity: ANoteEntity){
+    fun updateANote(aNoteEntity: ANoteEntity) {
         notesViewModel.updateANote(aNoteEntity)
     }
 

@@ -50,10 +50,15 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun recyclerViewInit(){
+    private fun recyclerViewInit() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = notesAdapter
-        binding.recyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+        binding.recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                this,
+                LinearLayoutManager.VERTICAL
+            )
+        )
     }
 
     private fun openDetailPage(aNoteEntity: ANoteEntity) {
