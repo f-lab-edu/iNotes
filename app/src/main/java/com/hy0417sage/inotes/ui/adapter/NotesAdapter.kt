@@ -2,55 +2,40 @@ package com.hy0417sage.inotes.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hy0417sage.inotes.databinding.LayoutANoteBinding
 import com.hy0417sage.inotes.repository.data.ANoteEntity
 
-class NotesAdapter :
-    RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
+class NotesAdapter : ListAdapter<ANoteEntity, RecyclerView.ViewHolder>(NotesDiffCallback()) {
 
-    private var notesList: List<ANoteEntity> = ArrayList()
-    private var itemClickListener: OnItemClickListener? = null
+    private lateinit var itemClickListener: OnItemClickListener
 
-    class ViewHolder(binding: LayoutANoteBinding) : RecyclerView.ViewHolder(binding.root) {
-        val title = binding.titleText
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return NotesViewHolder(
+            LayoutANoteBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        val binding: LayoutANoteBinding =
-            LayoutANoteBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
-
-        return ViewHolder(binding)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val notesList = notesList.get(position)
-
-        if (notesList.title!!.isEmpty()){
-            holder.title.text = notesList.mainText
-        }else{
-            holder.title.text = notesList.title
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is NotesViewHolder) {
+            val aNote = getItem(position) as ANoteEntity
+            holder.bind(aNote)
+            holder.itemView.setOnClickListener {
+                itemClickListener?.onClick(aNote)
+            }
         }
-
-        holder.itemView.setOnClickListener {
-            itemClickListener?.onClick(position)
-        }
-    }
-
-    override fun getItemCount() = notesList.size
-
-    fun updateNotes(notesList: List<ANoteEntity>) {
-        this.notesList = notesList
-        notifyDataSetChanged()
     }
 
     fun interface OnItemClickListener {
-        fun onClick(position: Int)
+        fun onClick(aNote: ANoteEntity)
     }
 
     fun setItemClickListener(onItemClickListener: OnItemClickListener) {
         this.itemClickListener = onItemClickListener
     }
-
-    fun aNotePosition(position: Int) = notesList[position]
 }

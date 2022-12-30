@@ -42,23 +42,27 @@ class MainActivity : AppCompatActivity() {
             val goANote = Intent(this, ANoteActivity::class.java)
             startActivity(goANote)
         }
-        notesAdapter.setItemClickListener { position ->
-            openDetailPage(notesAdapter.aNotePosition(position))
+
+        notesAdapter.setItemClickListener { aNote ->
+            openDetailPage(aNote)
         }
+
         notesViewModel.wholeNotes().observe(this, Observer { wholeNotes ->
-            notesAdapter.updateNotes(wholeNotes)
+            notesAdapter.submitList(wholeNotes)
         })
     }
 
     private fun recyclerViewInit() {
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.adapter = notesAdapter
-        binding.recyclerView.addItemDecoration(
-            DividerItemDecoration(
-                this,
-                LinearLayoutManager.VERTICAL
+        binding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = notesAdapter
+            addItemDecoration(
+                DividerItemDecoration(
+                    this@MainActivity,
+                    LinearLayoutManager.VERTICAL
+                )
             )
-        )
+        }
     }
 
     private fun openDetailPage(aNoteEntity: ANoteEntity) {
