@@ -3,8 +3,9 @@ package com.hy0417sage.inotes.repository.impl
 import com.hy0417sage.inotes.repository.NotesRepository
 import com.hy0417sage.inotes.repository.database.ANoteDao
 import com.hy0417sage.inotes.repository.data.ANoteEntity
+import javax.inject.Inject
 
-class NotesRepositoryImpl(private val aNoteDao: ANoteDao) : NotesRepository {
+class NotesRepositoryImpl @Inject constructor(private val aNoteDao: ANoteDao) : NotesRepository {
 
     override fun wholeNotes() = aNoteDao.wholeNotes()
 

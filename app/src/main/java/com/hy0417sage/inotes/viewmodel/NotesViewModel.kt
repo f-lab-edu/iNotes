@@ -4,10 +4,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hy0417sage.inotes.repository.NotesRepository
 import com.hy0417sage.inotes.repository.data.ANoteEntity
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NotesViewModel(private val notesRepository: NotesRepository) : ViewModel() {
+@HiltViewModel
+class NotesViewModel @Inject constructor(private val notesRepository: NotesRepository) :
+    ViewModel() {
 
     fun wholeNotes() = notesRepository.wholeNotes()
 

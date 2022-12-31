@@ -6,12 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.hy0417sage.inotes.ANoteActivity
-import com.hy0417sage.inotes.R
-import com.hy0417sage.inotes.databinding.FragmentEditANoteBinding
 import com.hy0417sage.inotes.databinding.FragmentViewANoteBinding
 import com.hy0417sage.inotes.repository.data.ANoteEntity
-import com.hy0417sage.inotes.viewmodel.NotesViewModel
 
 class ViewANoteFragment : Fragment() {
 
@@ -33,31 +29,36 @@ class ViewANoteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.aNoteTitle.text = aNoteActivity.noteTitle.toString()
         binding.aNoteMainText.text = aNoteActivity.noteMainText.toString()
+
         binding.viewANote.setOnClickListener {
-            aNoteActivity.fragmentViewChange(Companion.EDIT_SIGNAL)
+            canEditANote()
         }
 
-        canDeleteANote()
+        binding.deleteButton.setOnClickListener {
+            canDeleteANote()
+        }
+    }
+
+    private fun canEditANote() {
+        aNoteActivity.fragmentViewChange(Companion.EDIT_SIGNAL)
     }
 
     private fun canDeleteANote() {
-        binding.deleteButton.setOnClickListener {
-            aNoteActivity.deleteANote(
-                ANoteEntity(
-                    id = aNoteActivity.noteId,
-                    title = aNoteActivity.noteTitle,
-                    mainText = aNoteActivity.noteMainText
-                )
+        aNoteActivity.deleteANote(
+            ANoteEntity(
+                id = aNoteActivity.noteId,
+                title = aNoteActivity.noteTitle,
+                mainText = aNoteActivity.noteMainText
             )
-            aNoteActivity.onBackPressedDispatcher.onBackPressed()
-        }
+        )
+        aNoteActivity.onBackPressedDispatcher.onBackPressed()
     }
 
     companion object {
         fun newInstance() = ViewANoteFragment()
-        const val EDIT_SIGNAL: Int = 1000000000
+        const val EDIT_SIGNAL: Int = -2
     }
-
 }
