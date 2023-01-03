@@ -6,7 +6,6 @@ import com.hy0417sage.inotes.repository.NotesRepository
 import com.hy0417sage.inotes.repository.database.ANoteDao
 import com.hy0417sage.inotes.repository.database.NotesDataBase
 import com.hy0417sage.inotes.repository.impl.NotesRepositoryImpl
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,10 +18,10 @@ import javax.inject.Singleton
 class DIModule {
     @Provides
     @Singleton
-    fun provideAppDatabase(@ApplicationContext context: Context): NotesDataBase.NotesDB {
+    fun provideAppDatabase(@ApplicationContext context: Context): NotesDataBase {
         return Room.databaseBuilder(
             context.applicationContext,
-            NotesDataBase.NotesDB::class.java,
+            NotesDataBase::class.java,
             "Notes.db"
         )
             .fallbackToDestructiveMigration()
@@ -30,8 +29,8 @@ class DIModule {
     }
 
     @Provides
-    fun provideANoteDao(appDataBase: NotesDataBase.NotesDB): ANoteDao {
-        return appDataBase.aNoteDao()
+    fun provideANoteDao(appDataBase: NotesDataBase): ANoteDao {
+        return appDataBase.getANoteDao()
     }
 
     @Singleton

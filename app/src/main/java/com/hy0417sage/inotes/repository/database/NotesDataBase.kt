@@ -9,7 +9,4 @@ abstract class NotesDataBase : RoomDatabase() {
 
     abstract fun getANoteDao(): ANoteDao
 
-    abstract class NotesDB : RoomDatabase() {
-        abstract fun aNoteDao(): ANoteDao
-    }
 }
