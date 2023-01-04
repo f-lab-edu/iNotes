@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.hy0417sage.inotes.ANoteActivity
 import com.hy0417sage.inotes.databinding.FragmentEditANoteBinding
 import com.hy0417sage.inotes.repository.data.ANoteEntity
 
@@ -65,9 +64,12 @@ class EditANoteFragment : Fragment() {
                         aNoteActivity.fragmentViewChange(id)
                     }
                 }
-            }else{
-                val toast = Toast.makeText(aNoteActivity,"note is empty\n can't save (｡•́︿•̀｡)", Toast.LENGTH_SHORT)
-                toast.show()
+            } else {
+                Toast.makeText(
+                    aNoteActivity,
+                    "note is empty\n can't save (｡•́︿•̀｡)",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
